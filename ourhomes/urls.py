@@ -5,5 +5,6 @@ from . import views
 urlpatterns=[
     path('api/locations/', views.LocationList.as_view(), name="locations"),
     path('api/locations/', views.LocationList.as_view(), name="postlocations"),
+    path('api/onelocation/<int:pk>/', views.LocationDetails.as_view(), name="onelocation"),
 
 ]

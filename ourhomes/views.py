@@ -33,3 +33,16 @@ class LocationList(APIView):
             
             return Response(response, status=status.HTTP_200_OK)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class LocationDetails(APIView):
+    # get one neighbourhood 
+    def get_location(self, pk):
+        try:
+            return Location.objects.get(pk=pk)
+        except:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        location=self.get_location(pk)
+        serializers=LocationSerializer(location)
+        return Response(serializers.data)
