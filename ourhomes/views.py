@@ -70,3 +70,41 @@ class LocationDetails(APIView):
         location=self.get_location(pk)
         location.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class HomeList(APIView):
+    serializer_class=HomeSerializer
+
+    def get(self, request, format=None):
+        home=Home.objects.all()
+        serializers=HomeSerializer(home, many=True)
+        return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers=self.serializer_class(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            home=serializers.data
+
+            response={
+                "data":{
+                    "newhome":dict(home),
+                    "status":"Success",
+                    "message":"New Home created successfully"
+                }
+            }
+            return Response(response, status=status.HTTP_200_OK)
+        return Response(status.error, status=status.HTTP_400_BAD_REQUEST)
+
+class HomeDetails(APIView):
+    # get one home using id
+
+    def get_home(self, pk):
+        try:
+            return Home.objects.get(pk=pk)
+        except:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        home=self.get_home(pk)
+        serializers=HomeSerializer(home)
+        return Response(serializers.data)
