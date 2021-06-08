@@ -15,3 +15,21 @@ class LocationList(APIView):
         locations=Location.objects.all()
         serializers=LocationSerializer(locations, many=True)
         return Response(serializers.data)
+
+    # post a new location
+    def post(self, request, format=None):
+        serializers=self.serializer_class(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            locations=serializers.data
+
+            response={
+                "data":{
+                    "newlocation": dict(locations),
+                    "status":"Success",
+                    "message":"New Location created successfully"
+                }
+            }
+            
+            return Response(response, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
