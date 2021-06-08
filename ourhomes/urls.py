@@ -9,4 +9,6 @@ urlpatterns=[
     path('api/delete/location/<int:pk>/', views.LocationDetails.as_view(), name="deletelocation"),
     path('api/homes/', views.HomeList.as_view(), name="homes"),
     path('api/homes/<int:pk>/', views.HomeDetails.as_view(), name="onehome"),
+    path('api/update/homes/<int:pk>/', views.HomeDetails.as_view(), name="updatehome"),
+    path('api/delete/homes/<int:pk>/', views.HomeDetails.as_view(), name="deletehome"),
 ]

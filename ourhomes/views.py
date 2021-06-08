@@ -108,3 +108,18 @@ class HomeDetails(APIView):
         home=self.get_home(pk)
         serializers=HomeSerializer(home)
         return Response(serializers.data)
+
+    def put(self, request, pk, format=None):
+        home=self.get_home(pk)
+        serializers=HomeSerializer(home, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            home=serializers.data
+
+            return Response(home)
+        return Response(status.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        home=self.get_home(pk)
+        home.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
