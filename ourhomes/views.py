@@ -46,3 +46,27 @@ class LocationDetails(APIView):
         location=self.get_location(pk)
         serializers=LocationSerializer(location)
         return Response(serializers.data)
+
+    def put(self, request, pk, format=None):
+        location=self.get_location(pk)
+        serializers=LocationSerializer(location, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            location=serializers.data
+
+            response={
+                "data":{
+                    "updatedlocation":dict(location),
+                    "success":"Success",
+                    "message":"Location updated successfully"
+                }
+            }
+            return Response(location)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    
+    def delete(self, request, pk, format=None):
+        location=self.get_location(pk)
+        location.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
