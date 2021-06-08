@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class Location(models.Model):
@@ -7,32 +8,36 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
-class Profile(models.Model):
-    name=models.CharField(max_length=200)
+class User(AbstractUser):
+    is_profile=models.BooleanField(default=False)
+    is_admin=models.BooleanField(default=False)
+    is_homemanager=models.BooleanField(default=False)
+    first_name=models.CharField(max_length=200)
+    last_name=models.CharField(max_length=200)
     email=models.EmailField()
-    password=models.CharField(max_length=50)
-    confirmpassword=models.CharField(max_length=50)
+
+class Profile(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default="")
+    location=models.CharField(max_length=100, default="")
+   
 
     def __str__(self):
-        return self.name
+        return str(self.user)
 
 class Admin(models.Model):
-    name=models.CharField(max_length=200)
-    email=models.EmailField()
-    password=models.CharField(max_length=50)
-    confirmpassword=models.CharField(max_length=50)
+    user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default="")
+    designation=models.CharField(max_length=100, default="")  
 
     def __str__(self):
-        return self.name
+        return str(self.user)
 
 class HomeManager(models.Model):
-    name=models.CharField(max_length=200)
-    email=models.EmailField()
-    password=models.CharField(max_length=50)
-    confirmpassword=models.CharField(max_length=50)
+    user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default="")
+    designation=models.CharField(max_length=100, default="")  
+    
 
     def __str__(self):
-        return self.name
+        return str(self.user)
 
 class Home(models.Model):
     name=models.CharField(max_length=300)

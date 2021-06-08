@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# for various user authentication
+AUTH_USER_MODEL='ourhomes.User'
+
 
 # Application definition
 
