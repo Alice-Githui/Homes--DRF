@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from rest_framework_jwt.views import refresh_jwt_token
 
 # define paths
 urlpatterns=[
@@ -12,4 +13,5 @@ urlpatterns=[
     path('api/update/homes/<int:pk>/', views.HomeDetails.as_view(), name="updatehome"),
     path('api/delete/homes/<int:pk>/', views.HomeDetails.as_view(), name="deletehome"),
     path('api/profileregistration/', views.UserRegistration.as_view(), name="profileregistration"),
+    path('refresh-token/', refresh_jwt_token),
 ]

@@ -5,6 +5,8 @@ from .models import *
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 class LocationList(APIView):
@@ -126,26 +128,50 @@ class HomeDetails(APIView):
 
 
 class UserRegistration(APIView):
-        serializer_class=RegistrationSerializer
+    serializer_class=RegistrationSerializer
 
-        def post(self, request):
-            serializer=self.serializer_class(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
+    def post(self, request):
+        serializer=self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
 
-            user_data=serializer.data
+        user_data=serializer.data
+
+        response={
+            "data":{
+                "user":dict(user_data),
+                "status":"Success",
+                "message":"User account created successfully"
+            }
+
+        }
+        return Response(response, status=status.HTTP_201_CREATED)
+
+    def get(self,request,format=None):
+        user= User.objects.all()
+        serializers=RegistrationSerializer(user, many=True)
+        return Response(serializers.data)
+
+
+
+class LoginUser(APIView):
+    serializer_class=LoginSerializer
+    authentication_classes=(TokenAuthentication,)
+    permission_classes=(IsAuthenticated,)
+
+        # login user
+    def post(self, request, format=None):
+        serializers=self.serializer_class(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            users=serializers.data
 
             response={
                 "data":{
-                    "user":dict(user_data),
+                    "new_hood":dict(users),
                     "status":"Success",
-                    "message":"User account created successfully"
+                    "message":"User logged in successfully"
                 }
-
             }
-            return Response(response, status=status.HTTP_201_CREATED)
-
-        def get(self,request,format=None):
-            user= User.objects.all()
-            serializers=RegistrationSerializer(user, many=True)
-            return Response(serializers.data)
+            return Response(response, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
