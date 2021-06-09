@@ -29,6 +29,10 @@ class Home(models.Model):
     def __str__(self):
         return self.name
 
+    def search_by_name(search_term):
+        home=Home.objects.filter(name__icontains=search_term)
+        return home
+
 class HousePost(models.Model):
     name=models.ForeignKey(User, on_delete=models.CASCADE)
     home=models.ForeignKey(Home, on_delete=models.CASCADE, related_name="nameofhome")

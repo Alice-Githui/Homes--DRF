@@ -112,6 +112,7 @@ class HomeDetails(APIView):
         serializers=HomeSerializer(home)
         return Response(serializers.data)
 
+
     def put(self, request, pk, format=None):
         home=self.get_home(pk)
         serializers=HomeSerializer(home, request.data)
@@ -127,6 +128,13 @@ class HomeDetails(APIView):
         home.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class HomeSearch(APIView):
+    serializer_class=HomeSerializer
+
+    def get(self, request, search_term, format=None):
+        homes=Home.search_by_name(search_term)
+        serializers=HomeSerializer(homes, many=True)
+        return Response(serializers.data)
 
 class UserRegistration(APIView):
     serializer_class=RegistrationSerializer
@@ -164,6 +172,7 @@ class UserDetails(APIView):
         user=self.get_users(pk)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 

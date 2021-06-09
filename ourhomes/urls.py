@@ -10,6 +10,7 @@ urlpatterns=[
     path('api/delete/location/<int:pk>/', views.LocationDetails.as_view(), name="deletelocation"),
     path('api/homes/', views.HomeList.as_view(), name="homes"),
     path('api/homes/<int:pk>/', views.HomeDetails.as_view(), name="onehome"),
+    path('api/homes/<str:search_term>/', views.HomeSearch.as_view(), name="homebyname"),
     path('api/update/homes/<int:pk>/', views.HomeDetails.as_view(), name="updatehome"),
     path('api/delete/homes/<int:pk>/', views.HomeDetails.as_view(), name="deletehome"),
     path('api/profileregistration/', views.UserRegistration.as_view(), name="profileregistration"),
@@ -17,5 +18,4 @@ urlpatterns=[
     path('api/delete/user/<int:pk>/', views.UserDetails.as_view(), name="deleteuser"),
     path('refresh-token/', refresh_jwt_token),
     path('rest-auth/', include('rest_auth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls')),
 ]
