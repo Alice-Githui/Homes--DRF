@@ -125,8 +125,8 @@ class HomeDetails(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class ProfileRegistration(APIView):
-        serializer_class=ProfileRegistrationSerializer
+class UserRegistration(APIView):
+        serializer_class=RegistrationSerializer
 
         def post(self, request):
             serializer=self.serializer_class(data=request.data)
@@ -146,6 +146,6 @@ class ProfileRegistration(APIView):
             return Response(response, status=status.HTTP_201_CREATED)
 
         def get(self,request,format=None):
-            profiles= Profile.objects.all()
-            serializers=ProfileRegistrationSerializer(profiles, many=True)
+            user= User.objects.all()
+            serializers=RegistrationSerializer(user, many=True)
             return Response(serializers.data)
