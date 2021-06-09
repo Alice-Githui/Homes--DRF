@@ -4,10 +4,11 @@ from .serializers import *
 from .models import *
 from rest_framework.response import Response
 from rest_framework import status
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.parsers import FileUploadParser
 
 # Create your views here.
 class LocationList(APIView):
@@ -82,21 +83,30 @@ class HomeList(APIView):
         serializers=HomeSerializer(home, many=True)
         return Response(serializers.data)
 
-    def post(self, request, format=None):
-        serializers=self.serializer_class(data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            home=serializers.data
+    def post(self, request, *args, **kwargs):
+        images=request.data['images']
+        name=request.data['name']
+        capacity=request.data['capacity']
+        location=request.data['location']
+        Home.objects.create(images=images, name=name, capacity=capacity, location=location)
+        return HttpResponse({'message':'New Home created'}, status=status.HTTP_200_OK)
 
-            response={
-                "data":{
-                    "newhome":dict(home),
-                    "status":"Success",
-                    "message":"New Home created successfully"
-                }
-            }
-            return Response(response, status=status.HTTP_200_OK)
-        return Response(status.error, status=status.HTTP_400_BAD_REQUEST)
+    # parser_class=(FileUploadParser,)
+    # def post(self, request, format=None):
+    #     serializers=self.serializer_class(data=request.data)
+    #     if serializers.is_valid():
+    #         serializers.save()
+    #         home=serializers.data
+
+    #         response={
+    #             "data":{
+    #                 "newhome":dict(home),
+    #                 "status":"Success",
+    #                 "message":"New Home created successfully"
+    #             }
+    #         }
+    #         return Response(response, status=status.HTTP_200_OK)
+    #     return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class HomeDetails(APIView):
     # get one home using id

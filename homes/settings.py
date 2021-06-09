@@ -144,11 +144,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# media configurations
+MEDIA_URL =  '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 # cors allowed origins
 CORS_ALLOWED_ORIGINS=[
     'http://localhost:4200',
     'https://alice-githui.github.io',
 ]
+CORS_ORIGIN_ALLOW_ALL =  True
 
 # cloudinary configuration
 cloudinary.config(

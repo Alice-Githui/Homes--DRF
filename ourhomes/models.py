@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from cloudinary.models import CloudinaryField
+# from .models import File
 
 # Create your models here.
 class Location(models.Model):
@@ -18,10 +19,11 @@ class User(AbstractUser):
     last_name=models.CharField(max_length=200)
     email=models.EmailField(default="", unique=True)
 
- 
-
+def upload_image(instance, filename):
+    return "/".join(['images', str(instance.name), filename])
 class Home(models.Model):
-    image=CloudinaryField('image')
+    # images=models.FileField(blank=False, null=True)
+    images=models.ImageField(blank=False, null=True, upload_to=upload_image)
     name=models.CharField(max_length=300)
     location=models.ForeignKey(Location, on_delete=models.CASCADE)
     capacity=models.IntegerField(default=0)
