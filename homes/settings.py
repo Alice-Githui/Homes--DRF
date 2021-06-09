@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     # install rest_framework
     'rest_framework',
+    'rest_framework.authtoken',
     # install corsheaders
     'corsheaders',
     # cloudinary
@@ -149,6 +150,13 @@ cloudinary.config(
     api_key='156367496441819',
     api_secret='r2kdLG-DQFGEMGmnU50SVP9Nrko',
 )
+
+# rest framework authentication
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication', 
+    ],
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
