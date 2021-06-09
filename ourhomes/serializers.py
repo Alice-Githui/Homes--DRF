@@ -33,18 +33,3 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
-
-class LoginSerializer(serializers.ModelSerializer):
-    username=serializers.CharField()
-    password=serializers.CharField(
-        min_length=8,
-        max_length=20,
-        write_only=True,
-        error_messages={
-            "min_length": "Password should be atleast {min_length} characters"
-        }
-
-    )
-    class Meta:
-        model=User
-        fields=["username", "password"]

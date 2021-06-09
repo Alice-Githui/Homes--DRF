@@ -14,8 +14,8 @@ class User(AbstractUser):
     is_admin=models.BooleanField(default=False)
     is_homemanager=models.BooleanField(default=False)
     username=models.CharField(max_length=200, unique=True)
-    first_name=models.CharField(max_length=200, unique=True)
-    last_name=models.CharField(max_length=200, unique=True)
+    first_name=models.CharField(max_length=200)
+    last_name=models.CharField(max_length=200)
     email=models.EmailField(default="", unique=True)
 
  
