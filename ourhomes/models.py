@@ -18,6 +18,8 @@ class User(AbstractUser):
     last_name=models.CharField(max_length=200, unique=True)
     email=models.EmailField(default="", unique=True)
 
+ 
+
 class Home(models.Model):
     image=CloudinaryField('image')
     name=models.CharField(max_length=300)
