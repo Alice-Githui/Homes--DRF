@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Location(models.Model):
@@ -40,6 +41,7 @@ class HomeManager(models.Model):
         return str(self.user)
 
 class Home(models.Model):
+    image=CloudinaryField('image')
     name=models.CharField(max_length=300)
     location=models.ForeignKey(Location, on_delete=models.CASCADE)
     capacity=models.IntegerField(default=0)
