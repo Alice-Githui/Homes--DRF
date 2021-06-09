@@ -17,23 +17,23 @@ class User(AbstractUser):
     email=models.EmailField()
 
 class Profile(models.Model):
-    user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default="")
-    location=models.CharField(max_length=100, default="")
+    user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    location=models.CharField(max_length=100)
    
 
     def __str__(self):
         return str(self.user)
 
 class Admin(models.Model):
-    user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default="")
-    designation=models.CharField(max_length=100, default="")  
+    user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    designation=models.CharField(max_length=100)  
 
     def __str__(self):
         return str(self.user)
 
 class HomeManager(models.Model):
-    user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default="")
-    designation=models.CharField(max_length=100, default="")  
+    user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    designation=models.CharField(max_length=100)  
     
 
     def __str__(self):

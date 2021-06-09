@@ -123,3 +123,29 @@ class HomeDetails(APIView):
         home=self.get_home(pk)
         home.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ProfileRegistration(APIView):
+        serializer_class=ProfileRegistrationSerializer
+
+        def post(self, request):
+            serializer=self.serializer_class(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            user_data=serializer.data
+
+            response={
+                "data":{
+                    "user":dict(user_data),
+                    "status":"Success",
+                    "message":"User account created successfully"
+                }
+
+            }
+            return Response(response, status=status.HTTP_201_CREATED)
+
+        def get(self,request,format=None):
+            profiles= Profile.objects.all()
+            serializers=ProfileRegistrationSerializer(profiles, many=True)
+            return Response(serializers.data)

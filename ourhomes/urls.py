@@ -11,4 +11,5 @@ urlpatterns=[
     path('api/homes/<int:pk>/', views.HomeDetails.as_view(), name="onehome"),
     path('api/update/homes/<int:pk>/', views.HomeDetails.as_view(), name="updatehome"),
     path('api/delete/homes/<int:pk>/', views.HomeDetails.as_view(), name="deletehome"),
+    path('api/profileregistration/', views.ProfileRegistration.as_view(), name="profileregistration"),
 ]

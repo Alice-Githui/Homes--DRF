@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +50,8 @@ INSTALLED_APPS = [
     'rest_framework',
     # install corsheaders
     'corsheaders',
+    # cloudinary
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -136,6 +142,13 @@ CORS_ALLOWED_ORIGINS=[
     'http://localhost:4200',
     'https://alice-githui.github.io',
 ]
+
+# cloudinary configuration
+cloudinary.config(
+    cloud_name='letewaa',
+    api_key='156367496441819',
+    api_secret='r2kdLG-DQFGEMGmnU50SVP9Nrko',
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
