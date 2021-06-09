@@ -46,9 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ourhomes',
 
-    # install rest_framework
+    # install rest_framework and its depedencies
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
     # install corsheaders
     'corsheaders',
     # cloudinary
