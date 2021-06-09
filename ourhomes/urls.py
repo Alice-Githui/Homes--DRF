@@ -13,6 +13,8 @@ urlpatterns=[
     path('api/update/homes/<int:pk>/', views.HomeDetails.as_view(), name="updatehome"),
     path('api/delete/homes/<int:pk>/', views.HomeDetails.as_view(), name="deletehome"),
     path('api/profileregistration/', views.UserRegistration.as_view(), name="profileregistration"),
+    path('api/allusers/', views.UserRegistration.as_view(), name="allusers"),
+    path('api/delete/user/<int:pk>/', views.UserDetails.as_view(), name="deleteuser"),
     path('refresh-token/', refresh_jwt_token),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),

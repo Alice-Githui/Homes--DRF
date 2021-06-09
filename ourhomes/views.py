@@ -153,3 +153,17 @@ class UserRegistration(APIView):
         serializers=RegistrationSerializer(user, many=True)
         return Response(serializers.data)
 
+class UserDetails(APIView):
+    def get_users(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except:
+            return Http404
+
+    def delete(self, request, pk, format=None):
+        user=self.get_users(pk)
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
