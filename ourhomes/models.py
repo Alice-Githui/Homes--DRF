@@ -39,6 +39,10 @@ class Home(models.Model):
         home=Home.objects.filter(name__icontains=search_term)
         return home
 
+    def search_by_location(location):
+        home=Home.objects.filter(location__name=location)
+        return home
+
 class Manager(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 

@@ -249,6 +249,7 @@ def logoutUser(request):
     logout(request)
     return redirect('homepage')
 
+@login_required(login_url="loginuser")
 def newHome(request):
     form=HomeEntryForm
     current_user=request.user
@@ -264,6 +265,13 @@ def newHome(request):
     else:
         form=HomeEntryForm()
     return render(request, 'files/newhome.html', {"form":form})
+
+
+def oneHome(request, pk):
+    home=Home.objects.get(id=pk)
+
+    return render(request, 'files/onehome.html', {"home":home})
+
 
 
 

@@ -25,4 +25,5 @@ urlpatterns=[
     path('login', views.loginUser, name="loginuser"),
     path('logout', views.logoutUser, name="logoutUser"),
     path('newhome', views.newHome, name="newhome"),
+    path('onehome/<int:pk>', views.oneHome, name="onehome")
 ]
