@@ -1,15 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework.views import APIView
 from .serializers import *
 from .models import *
 from rest_framework.response import Response
 from rest_framework import status
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.parsers import FileUploadParser
 from .forms import GeneralAdminRegistrationForm, ManagerRegistrationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate,login,logout
+from django.contrib import messages
 
 # Create your views here.
 class LocationList(APIView):
@@ -215,6 +218,34 @@ def managerRegister(request):
     else:
         form=ManagerRegistrationForm()
     return render(request, 'registration/mregister.html', {"form": form})
+
+def loginUser(request):
+    if request.method =="POST":
+        username = request.POST.get('username')
+        # print(username)
+        password = request.POST.get('password')
+        # print(password)
+
+        if username and password:
+            user=authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+
+                return redirect('homepage')
+
+            else:
+                messages.error(request, "Username or Password is incorrect")
+
+        else:
+            messages.error(request, "Field is empty. Enter Username and Password")
+
+    return render(request, 'registration/login.html')
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('index')
 
 
 
