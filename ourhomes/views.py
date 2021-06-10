@@ -281,7 +281,6 @@ def allposts(request):
         form=Post(request.POST, request.FILES)
         if form.is_valid():
             newpost=form.save(commit=False)
-            newpost.profile=current_user
             newpost.save()
 
             # return redirect('#')

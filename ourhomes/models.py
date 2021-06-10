@@ -62,6 +62,14 @@ class Post(models.Model):
     name=models.ForeignKey(User, on_delete=models.CASCADE)
     details=models.TextField()
 
+    def search_by_name(search_term):
+        post=Post.objects.filter(name__icontains=search_term)
+        return post
+
+    def search_by_word(search_word):
+        post=Post.objects.filter(details__icontains=search_word)
+        return post
+
     def __str__(self):
         return str(self.name)
 
