@@ -1,6 +1,7 @@
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
+from django import forms
 
 class GeneralAdminRegistrationForm(UserCreationForm):
     # first_name=forms.CharField(required=True)
@@ -41,3 +42,8 @@ class ManagerRegistrationForm(UserCreationForm):
         manager=Manager.objects.create(user=user)
         manager.save()
         return user
+
+class HomeEntryForm(forms.ModelForm):
+    class Meta:
+        model=Home
+        exclude=['location']
