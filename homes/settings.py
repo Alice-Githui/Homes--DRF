@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     # install corsheaders
     'corsheaders',
     # cloudinary
-    'cloudinary'
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
