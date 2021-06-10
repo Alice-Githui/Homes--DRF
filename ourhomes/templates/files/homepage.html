@@ -11,10 +11,14 @@
                 <div>
                     <p>View Houses in the below locations</p>
                 </div>
+                <!-- {% for location in location %}
+                <a class="nav-item nav-link" routerLink="/repos" routerLinkActive='active' id="repos" href="{% url 'homepage' %}?location={{location.name }}" style="font-weight: bold;">{{location.name}}</a>
+                {% endfor %} -->
                 {% for location in locations %}
-                <ul>
+                <a href="{% url 'homepage' %}?location={{location.name}}"><li>{{location.name}}</li></a>
+                <!-- <ul>
                     <li>{{location.name}}</li>
-                </ul>               
+                </ul>                -->
                 {% endfor %}
                 <a href="{% url 'newlocation' %}"><p style="color: white;">ADD A NEW LOCATION</p></a>
                 <br>

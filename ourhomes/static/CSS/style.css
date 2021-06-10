@@ -96,14 +96,16 @@
     padding-right: 20px;
     color: white;
 }
-.locationlist ul{
+/* .locationlist ul{
     padding-top: 40px;
-}
+} */
 
-.locationlist ul li{
+.locationlist a li{
     list-style-type: none;
     /* padding-top: 60px; */
     padding-right: 20px;
+    text-decoration: none;
+    color: white;
 }
 
 #onehomedetails{
@@ -204,6 +206,10 @@
     flex-direction: column;
     height: 100vh;
     justify-content: center;
+}
+
+nav{
+    font-size: 14px;
 }
 
 

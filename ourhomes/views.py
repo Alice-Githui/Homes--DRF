@@ -197,6 +197,7 @@ def homepage(request):
     homes=Home.objects.all()
     location=Location.objects.all()
     # print(homes)
+
     return render(request, 'files/homepage.html', {"homes":homes, "locations":location})
 
 def registration(request):
@@ -280,9 +281,9 @@ def oneHome(request, pk):
 
 def search_home(request):
     if 'homes' in request.GET and request.GET['homes']:
-        search_term=request.GET.get('homes')
-        searched_homes=Home.search_by_name(search_term)
-        message=f"{search_term}"
+        location=request.GET.get('homes')
+        searched_homes=Home.search_by_location(location)
+        message=f"{location}"
 
         return render(request, 'files/lhomes.html', {"homes":searched_homes, "message":message})
 
