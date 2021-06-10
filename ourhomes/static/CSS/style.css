@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.homepage-images h4{
+    color: red;
+}
+
+.homepage-images img{
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+}

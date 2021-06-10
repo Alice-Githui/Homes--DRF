@@ -1,0 +1,17 @@
+{% extends 'files/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container-fluid" id="homepage">
+    <div class="row">
+        <div class="homepage-images">
+            {% for home in homes %}
+            <h4>{{home.name}}</h4>
+            <img src="{{home.images.url}}" alt="{{home.name}} image showing the view of the house">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

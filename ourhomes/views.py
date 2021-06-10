@@ -9,7 +9,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.parsers import FileUploadParser
-from .forms import GeneralAdminRegistrationForm, ManagerRegistrationForm
+from .forms import GeneralAdminRegistrationForm, ManagerRegistrationForm, HomeEntryForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
@@ -189,7 +189,9 @@ class UserDetails(APIView):
 
 # application views
 def homepage(request):
-    return render(request, 'files/homepage.html', {})
+    homes=Home.objects.all()
+    # print(homes)
+    return render(request, 'files/homepage.html', {"homes":homes})
 
 def registration(request):
     form=GeneralAdminRegistrationForm
