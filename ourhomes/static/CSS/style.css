@@ -2,13 +2,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Lora', serif;
 }
 
-.homepage-images h4{
-    color: red;
-}
 
-.homepage-images img{
+/* .homepage-images img{
     height: 300px;
     width: 300px;
     object-fit: cover;
@@ -18,7 +16,7 @@
     height: 300px;
     width: 300px;
     object-fit: cover;
-}
+} */
 
 #landingpage{
     /* background-color: #faf6f5; */
