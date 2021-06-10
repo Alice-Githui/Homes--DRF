@@ -2,25 +2,34 @@
 {% load static %}
 {% load bootstrap3 %}
 {% block content %}
-<div class="container-fluid">
+{% include 'navbar.html' %}
+<div class="container-fluid" id="searchedhomes">
     <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
         {% if homes%}
           <h2>Found {{ homes|length }} home</h2>
         {% else %}
           <h2> Found 0 homes by the name {{message}}</h2>
         {% endif %}
-    
       </div>
+      <div class="col-md-1"></div>      
+    
+    </div>
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div>
                 {% if homes %}
-                <div class="homepage-images">
+                <div>
                 {% for home in homes %}
-                <p>{{home.name}}</p>
-                <p>{{home.occupancy}}</p>
-                <img src="{{home.images.url}}" alt="image of {{home.name}}">              
+                <div class="image-card card col-md-6">
+                <p>Name of the home: {{home.name}}</p>
+                <p>House capacity: {{home.capacity}}</p>
+                <p>Location of the home: {{home.location}}</p>
+                <img src="{{home.images.url}}" alt="image of {{home.name}}"> 
+                </div>
+                             
                 {% endfor %}
 
                 </div>
@@ -33,3 +42,5 @@
 </div>
 
 {% endblock %}
+
+

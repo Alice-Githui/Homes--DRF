@@ -3,17 +3,24 @@
 {% load bootstrap3 %}
 
 {% block content %}
-<div class="container-fluid">
+{% include 'navbar.html' %}
+<div class="container-fluid" id="addhome">
     <div class="row">
-        <div>
-            <form method="POST" action="{% url 'newhome' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% bootstrap_form form %}
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="addnewhome">
+                <form method="POST" action="{% url 'newhome' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+    
+                    <input value="Submit" type="submit" class="btn btn-lg btn-block">
+    
+                </form>
+            </div>
 
-                <input value="Submit" type="submit" class="btn btn-info btn-lg btn-block">
-
-            </form>
         </div>
+        <div class="col-md-2"></div>
+        
     </div>
 </div>
 

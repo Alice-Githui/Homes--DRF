@@ -3,15 +3,20 @@
 {% load bootstrap3 %}
 
 {% block content %}
-<div class="container-fluid">
+{% include 'navbar.html' %}
+<div class="container-fluid" id="onehomedetails">
     <div class="row">
-        <div class="oneimageimages">
-            <p>Name: {{home.name}}</p>
-            <p>Location: {{home.location}}</p>
-            <p>Capacity: {{home.capacity}}</p>
-            <img src="{{home.images.url}}">
-
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="image-card card">
+                <h2>Name: {{home.name}}</h2>
+                <h2>Location: {{home.location}}</h2>
+                <h2>Capacity: {{home.capacity}} beds</h2>
+                <img src="{{home.images.url}}">
+    
+            </div>
         </div>
+       
     </div>
 </div>
 
