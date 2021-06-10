@@ -275,16 +275,17 @@ def oneHome(request, pk):
     return render(request, 'files/onehome.html', {"home":home})
 
 def search_home(request):
-    if 'home' in request.GET and request.GET['home']:
-        location=request.GET.get('home')
-        searched_homes=Home.search_by_location(location)
-        message=f"{location}"
+    if 'homes' in request.GET and request.GET['homes']:
+        search_term=request.GET.get('homes')
+        searched_homes=Home.search_by_name(search_term)
+        message=f"{search_term}"
 
         return render(request, 'files/lhomes.html', {"homes":searched_homes, "message":message})
 
     else:
-        message='Please enter a location to search'
+        message='Please enter a house to search'
         return render(request, 'files/lhomes.html', {"message":message})
+
 
 def allposts(request):
     posts=PostModel.objects.all()

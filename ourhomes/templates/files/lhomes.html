@@ -1,0 +1,35 @@
+{% extends 'files/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        {% if homes%}
+          <h2>Found {{ homes|length }} home</h2>
+        {% else %}
+          <h2> Found 0 homes by the name {{message}}</h2>
+        {% endif %}
+    
+      </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div>
+                {% if homes %}
+                <div class="homepage-images">
+                {% for home in homes %}
+                <p>{{home.name}}</p>
+                <p>{{home.occupancy}}</p>
+                <img src="{{home.images.url}}" alt="image of {{home.name}}">              
+                {% endfor %}
+
+                </div>
+                
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
