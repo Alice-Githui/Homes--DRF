@@ -19,3 +19,48 @@
     width: 300px;
     object-fit: cover;
 }
+
+#landingpage{
+    background-color: #faf6f5;
+    height: 100vh;
+
+}
+
+#landingpageheaders{
+    border: 1px solid black;
+    /* background-color: #b5a0a2; */
+    background-image: url('../../../media/images/background.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    margin-top: 65px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.landingpageheaders ul a{
+    text-decoration: none;
+    list-style-type: none;
+    display:inline-block;
+    flex-direction: row;
+    margin-left: 140px;
+    margin-top: 20px;
+    color: black;
+}
+
+#landingpageheaders h3{
+    /* color: white; */
+    margin-top: 100px;
+    text-align: center;
+    font-size: 40px;
+}
+
+
+#landingpageheaders p{
+    /* color: white; */
+    text-align: center;
+    font-size: 32px;
+}
+

@@ -1,0 +1,40 @@
+{% load static %}
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="{% static 'CSS/style.css' %}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid" id="landingpage">
+        <div class="row" id="landing-top">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" id="landingpageheaders">
+                <div class="row">
+                    <div class="landingpageheaders">
+                        <ul>
+                            <a href="{% url 'homepage' %}"><li>HOME</li></a>
+                            <a href="#"><li>ABOUT US</li></a>
+                            <a href="{% url 'allposts' %}"><li>BLOG</li></a>
+                            <a href="{% url 'loginuser' %}"><li>LOGIN</li></a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row" class="landing-text">
+                    <h3>NYUMBANI</h3>
+                    <p>Sharing Shelters One at a Time</p>
+                </div>              
+
+            </div>
+            <div class="col-md-2"></div>
+            
+        </div>
+    </div>
+    
+</body>
+</html>
