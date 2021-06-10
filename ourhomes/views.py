@@ -14,6 +14,7 @@ from .forms import GeneralAdminRegistrationForm, ManagerRegistrationForm, HomeEn
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from django.urls import reverse_lazy, reverse
 
 # Create your views here.
 class LocationList(APIView):
@@ -273,7 +274,7 @@ def oneHome(request, pk):
 
     return render(request, 'files/onehome.html', {"home":home})
 
-def posts(request):
+def allposts(request):
     posts=PostModel.objects.all()
     
     if request.method=="POST":
@@ -283,11 +284,13 @@ def posts(request):
             newpost.profile=current_user
             newpost.save()
 
-            return redirect('#')
+            # return redirect('#')
+
+            return HttpResponseRedirect(reverse('allposts'))
 
     else:
         form=Post()
-    return render(request, 'files/allposts.html', {"posts":posts})
+    return render(request, 'files/allposts.html', {"posts":posts, "form":form})
 
 def homepost(request):
     homepost=HousePost.objects.all()

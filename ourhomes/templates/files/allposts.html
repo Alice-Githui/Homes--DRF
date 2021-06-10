@@ -4,15 +4,28 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div>
-            {% for post in posts %}
-            <h3>Posted By: {{post.name.username}}</h3>
-            <p>{{post.details}}</p>
-            {% endfor %}
+        <div class="col-md-8">
+            <div>
+                {% for post in posts %}
+                <h3>Posted By: {{post.name.username}}</h3>
+                <p>{{post.details}}</p>
+                {% endfor %}
+            </div>
         </div>
-        <a href="{% url 'allposts'%}">
-        <button type="submit" class="btn btn-lg btn-info">Create New Post</button>
-        </a>
+        
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-lg btn-info">Create New Post</button>
+            <form method="POST" action="{% url 'allposts' %}">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+
+                <input type="submit" value="Enter Post" class="btn btn-lg btn-info btn-block">
+
+            </form>
+
+        </div>
+        
+        
     </div>
 </div>
 

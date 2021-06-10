@@ -26,6 +26,6 @@ urlpatterns=[
     path('logout', views.logoutUser, name="logoutUser"),
     path('newhome', views.newHome, name="newhome"),
     path('onehome/<int:pk>', views.oneHome, name="onehome"),
-    path('posts', views.posts, name="allposts"),
+    path('allposts', views.allposts, name="allposts"),
     path('houseposts', views.homepost, name="homepost"),
 ]
