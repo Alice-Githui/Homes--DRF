@@ -21,13 +21,13 @@ class User(AbstractUser):
 
 def upload_image(instance, filename):
     return "/".join(['images', str(instance.name), filename])
+
 class Home(models.Model):
-    # images=models.FileField(blank=False, null=True)
-    images=models.ImageField(blank=False, null=True, upload_to=upload_image)
+    # images=models.ImageField(blank=False, null=True, upload_to=upload_image)
+    images=CloudinaryField('image')
     name=models.CharField(max_length=300)
     location=models.ForeignKey(Location, on_delete=models.CASCADE)
     capacity=models.IntegerField(default=0)
-
     def __str__(self):
         return self.name
 

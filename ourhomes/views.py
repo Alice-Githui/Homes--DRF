@@ -84,11 +84,11 @@ class HomeList(APIView):
         return Response(serializers.data)
 
     def post(self, request, *args, **kwargs):
-        images=request.data['images']
+        images=request.data['profile']
         name=request.data['name']
         capacity=request.data['capacity']
-        location=request.data['location']
-        Home.objects.create(images=images, name=name, capacity=capacity, location=location)
+        # location=request.data['location']
+        Home.objects.create(images=images, name=name, capacity=capacity)
         return HttpResponse({'message':'New Home created'}, status=status.HTTP_200_OK)
 
     # parser_class=(FileUploadParser,)
