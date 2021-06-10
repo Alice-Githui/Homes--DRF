@@ -19,7 +19,8 @@ urlpatterns=[
     path('refresh-token/', refresh_jwt_token),
     path('rest-auth/', include('rest_auth.urls')),
 
-    path('', views.homepage, name="homepage"),
+    path('homepage', views.homepage, name="homepage"),
+    path('', views.landingpage, name="landingpage"),
     path('registration', views.registration, name="registration"),
     path('managerRegister', views.managerRegister, name="manager-registration"),
     path('login', views.loginUser, name="loginuser"),
@@ -27,6 +28,6 @@ urlpatterns=[
     path('newhome', views.newHome, name="newhome"),
     path('onehome/<int:pk>', views.oneHome, name="onehome"),
     path('allposts', views.allposts, name="allposts"),
-    path('houseposts', views.homepost, name="homepost"),
     path('search', views.search_home, name="search_results"),
+    path('newlocation', views.newlocation, name="newlocation"),
 ]

@@ -1,0 +1,33 @@
+{% extends 'files/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div>
+                <!-- <form action="{% url 'newlocation' %}" method="POST">
+                    {% csrf_token %}
+
+                    {% bootstrap_form form %}
+
+                    <input type="submit" class="btn btn-block btn-lg btn-info" value="Submit Location">
+
+                </form> -->
+                <form method="POST" action="{% url 'newlocation' %}">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+    
+                    <input type="submit" value="Submit New Location" class="btn btn-lg btn-info btn-block">
+    
+                </form>
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+{% endblock %}

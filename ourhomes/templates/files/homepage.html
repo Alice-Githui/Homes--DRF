@@ -5,13 +5,30 @@
 {% block content %}
 <div class="container-fluid" id="homepage">
     <div class="row">
-        <div class="homepage-images">
-            {% for home in homes %}
-            
-            <a href="{% url 'onehome' home.pk %}"><h3>{{home.name}}</h3></a>
-            <img src="{{home.images.url}}" alt="{{home.name}} image showing the view of the house">
-            {% endfor %}
+        <div class="col-md-3">
+            <div>
+                {% for location in locations %}
+                <ul>
+                    <li>{{location.name}}</li>
+                </ul>               
+                {% endfor %}
+                <a href="{% url 'newlocation' %}"><p>Add a New Location</p></a>
+                <br>
+                <small>A new location should be input if it does not currently exist</small>
+            </div>
+
         </div>
+        <div class="col-md-9">
+            <div class="homepage-images">
+                {% for home in homes %}
+                
+                <a href="{% url 'onehome' home.pk %}"><h3>{{home.name}}</h3></a>
+                <img src="{{home.images.url}}" alt="{{home.name}} image showing the view of the house">
+                {% endfor %}
+            </div>
+
+        </div>
+      
     </div>
 </div>
 

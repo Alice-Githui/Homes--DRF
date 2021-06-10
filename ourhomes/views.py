@@ -10,7 +10,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.parsers import FileUploadParser
-from .forms import GeneralAdminRegistrationForm, ManagerRegistrationForm, HomeEntryForm, Post, HousePost
+from .forms import GeneralAdminRegistrationForm, ManagerRegistrationForm, HomeEntryForm, Post, HousePost, LocationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
@@ -190,10 +190,14 @@ class UserDetails(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 # application views
+def landingpage(request):
+    return render(request, 'files/landingpage.html')
+    
 def homepage(request):
     homes=Home.objects.all()
+    location=Location.objects.all()
     # print(homes)
-    return render(request, 'files/homepage.html', {"homes":homes})
+    return render(request, 'files/homepage.html', {"homes":homes, "locations":location})
 
 def registration(request):
     form=GeneralAdminRegistrationForm
@@ -304,10 +308,21 @@ def allposts(request):
         form=Post()
     return render(request, 'files/allposts.html', {"posts":posts, "form":form})
 
-def homepost(request):
-    homepost=HousePost.objects.all()
+@login_required(login_url="loginuser")
+def newlocation(request):
+    form=LocationForm()
 
-    return render(request, 'files/homepost.html', {"homepost":homepost})
+    if request.method=="POST":
+        form=LocationForm(request.POST, request.FILES)
+        if form.is_valid():
+            newlocation=form.save(commit=False)
+            newlocation.save()
+
+            return redirect('homepage')
+
+    else:
+        form=LocationForm()
+    return render(request, 'files/newlocation.html', {"form":form})
 
 
 

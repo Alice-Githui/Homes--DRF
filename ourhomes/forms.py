@@ -54,5 +54,11 @@ class Post(forms.ModelForm):
         fields="__all__"
 
 class HousePost(forms.ModelForm):
-    model=HousePost
-    fields="__all__"
+    class Meta:
+        model=HousePost
+        fields="__all__"
+
+class LocationForm(forms.ModelForm):
+    class Meta:
+        model=Location
+        fields="__all__"
