@@ -56,14 +56,14 @@ class HousePost(models.Model):
     details=models.TextField()
 
     def __str__(self):
-        return str(self.name_username)
+        return str(self.name)
 
 class Post(models.Model):
     name=models.ForeignKey(User, on_delete=models.CASCADE)
     details=models.TextField()
 
     def __str__(self):
-        return str(self.name_username)
+        return str(self.name)
 
 
 

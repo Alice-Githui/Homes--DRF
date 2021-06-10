@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework.views import APIView
 from .serializers import *
 from .models import *
+from .models import Post as PostModel
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404, HttpResponse, HttpResponseRedirect
@@ -9,7 +10,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.parsers import FileUploadParser
-from .forms import GeneralAdminRegistrationForm, ManagerRegistrationForm, HomeEntryForm
+from .forms import GeneralAdminRegistrationForm, ManagerRegistrationForm, HomeEntryForm, Post, HousePost
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
@@ -271,6 +272,27 @@ def oneHome(request, pk):
     home=Home.objects.get(id=pk)
 
     return render(request, 'files/onehome.html', {"home":home})
+
+def posts(request):
+    posts=PostModel.objects.all()
+    
+    if request.method=="POST":
+        form=Post(request.POST, request.FILES)
+        if form.is_valid():
+            newpost=form.save(commit=False)
+            newpost.profile=current_user
+            newpost.save()
+
+            return redirect('#')
+
+    else:
+        form=Post()
+    return render(request, 'files/allposts.html', {"posts":posts})
+
+def homepost(request):
+    homepost=HousePost.objects.all()
+
+    return render(request, 'files/homepost.html', {"homepost":homepost})
 
 
 

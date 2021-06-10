@@ -1,0 +1,20 @@
+{% extends 'files/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            {% for post in posts %}
+            <h3>Posted By: {{post.name.username}}</h3>
+            <p>{{post.details}}</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'allposts'%}">
+        <button type="submit" class="btn btn-lg btn-info">Create New Post</button>
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -47,3 +47,12 @@ class HomeEntryForm(forms.ModelForm):
     class Meta:
         model=Home
         fields="__all__"
+
+class Post(forms.ModelForm):
+    class Meta:
+        model=Post
+        fields="__all__"
+
+class HousePost(forms.ModelForm):
+    model=HousePost
+    fields="__all__"
