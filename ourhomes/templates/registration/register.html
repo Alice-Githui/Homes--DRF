@@ -1,0 +1,68 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container-fluid" id="registrationform">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="registration">
+                <div class="registration-head">
+                    <h4>NYUMBA KUMI</h4>
+                    <p>Sign Up</p>
+                </div>
+                <br>
+                <div class="registration-form form-group">
+                    <form action="" , method="post" class="regform">
+                        {% csrf_token %}
+                        <!-- {% bootstrap_form form %}         -->
+                        <label for="fisrt_name" class="form-control">First Name:
+                            {{form.first_name}}
+                        </label>
+                        <label for="last_name" class="form-control">Last Name:
+                            {{form.last_name}}
+                        </label>
+                        <label for="username" class="form-control">Username:
+                        {{form.username}}
+                        </label>
+                        <label for="email" class="form-control">Input Email Address:
+                        {{form.email}}
+                        </label>
+                        <label for="password1" class="form-control">Enter Password:
+                        {{form.password1}}
+                        </label>
+                        <label for="password2" class="form-control">Confirm Password: 
+                        {{form.password2}}   
+                        </label>                  
+                        <br>
+                        {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            {{ error|escape }}
+                        {% endfor %}
+                        {% endif %} <br>
+                       
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success btn-block" value="Sign Up">
+                        </div>
+    
+                    </form>
+                    <div class="registration-login">
+                        <p>Have an account?<a href="#">Login</a></p>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+</div>
+
+{% endblock %}

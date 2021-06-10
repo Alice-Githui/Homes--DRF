@@ -21,7 +21,6 @@ class User(AbstractUser):
 
 class GeneralAdmin(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    location=models.CharField(max_length=300)
 
 def upload_image(instance, filename):
     return "/".join(['images', str(instance.name), filename])
@@ -42,7 +41,6 @@ class Home(models.Model):
 
 class Manager(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    home=models.ForeignKey(Home, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.user)
