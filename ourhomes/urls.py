@@ -18,4 +18,7 @@ urlpatterns=[
     path('api/delete/user/<int:pk>/', views.UserDetails.as_view(), name="deleteuser"),
     path('refresh-token/', refresh_jwt_token),
     path('rest-auth/', include('rest_auth.urls')),
+
+    path('', views.homepage, name="homepage"),
+    path('registration', views.registration, name="registration"),
 ]

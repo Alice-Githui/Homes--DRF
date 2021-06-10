@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'corsheaders',
     # cloudinary
     'cloudinary',
+    # bootstrap
+    'bootstrap3'
 ]
 
 MIDDLEWARE = [

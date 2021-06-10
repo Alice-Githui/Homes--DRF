@@ -9,6 +9,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.parsers import FileUploadParser
+from .forms import GeneralAdminRegistrationForm, ManagerRegistrationForm
 
 # Create your views here.
 class LocationList(APIView):
@@ -182,6 +183,13 @@ class UserDetails(APIView):
         user=self.get_users(pk)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# application views
+def homepage(request):
+    return render(request, 'files/homepage.html', {})
+
+def registration(request):
+    return render(request, 'registration/register.html', {})
 
 
 

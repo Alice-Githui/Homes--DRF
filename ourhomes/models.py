@@ -19,7 +19,7 @@ class User(AbstractUser):
     last_name=models.CharField(max_length=200)
     email=models.EmailField(default="", unique=True)
 
-class Admin(models.Model):
+class GeneralAdmin(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     location=models.CharField(max_length=300)
 
