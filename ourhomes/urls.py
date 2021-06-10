@@ -28,4 +28,5 @@ urlpatterns=[
     path('onehome/<int:pk>', views.oneHome, name="onehome"),
     path('allposts', views.allposts, name="allposts"),
     path('houseposts', views.homepost, name="homepost"),
+    path('search', views.search_home, name="search_results"),
 ]
