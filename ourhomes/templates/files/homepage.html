@@ -14,8 +14,8 @@
                 {% for location in locations %}
                 <a><li>{{location.name}}</li></a>
                 {% endfor %}
-                <a href="{% url 'newlocation' %}"><p style="color: white; border: none;">ADD A NEW LOCATION</p></a>
                 <br>
+                <a href="{% url 'newlocation' %}"><p style="color: white; border: none;">ADD A NEW LOCATION</p></a>
                 <small style="font-size: 12px; font-style: italic;">(A new location should be input if it does not currently exist)</small>
             </div>
 
@@ -24,7 +24,7 @@
             {% include 'navbar.html' %}
             <div>
                 {% for home in homes %}
-                <div class="image-card col-md-6 card">
+                <div class="image-card col-md-6">
                     <a href="{% url 'onehome' home.pk %}"><h3>View House: {{home.name}}</h3></a>
                     <img src="{{home.images.url}}" alt="{{home.name}} image showing the view of the house">
                 </div>                
