@@ -46,4 +46,4 @@ class ManagerRegistrationForm(UserCreationForm):
 class HomeEntryForm(forms.ModelForm):
     class Meta:
         model=Home
-        exclude=['location']
+        fields="__all__"

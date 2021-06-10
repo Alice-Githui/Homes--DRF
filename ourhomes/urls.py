@@ -23,4 +23,6 @@ urlpatterns=[
     path('registration', views.registration, name="registration"),
     path('managerRegister', views.managerRegister, name="manager-registration"),
     path('login', views.loginUser, name="loginuser"),
+    path('logout', views.logoutUser, name="logoutUser"),
+    path('newhome', views.newHome, name="newhome"),
 ]

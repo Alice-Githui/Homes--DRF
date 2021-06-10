@@ -247,7 +247,23 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('index')
+    return redirect('homepage')
+
+def newHome(request):
+    form=HomeEntryForm
+    current_user=request.user
+    if request.method=="POST":
+        form=HomeEntryForm(request.POST, request.FILES)
+        if form.is_valid():
+            home=form.save(commit=False)
+            home.profile=current_user
+            home.save()
+
+            return redirect('homepage')
+
+    else:
+        form=HomeEntryForm()
+    return render(request, 'files/newhome.html', {"form":form})
 
 
 

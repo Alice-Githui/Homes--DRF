@@ -171,6 +171,10 @@ REST_FRAMEWORK = {
     ],
 }
 
+# login URLS
+LOGIN_URL="login/"
+LOGIN_REDIRECT_URL="/"
+
 import datetime
 # Configure the JWTs to expire after 1 hour, and allow users to refresh near-expiration tokens
 JWT_AUTH = {
