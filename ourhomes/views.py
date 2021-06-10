@@ -290,7 +290,7 @@ def search_home(request):
         message='Please enter a house to search'
         return render(request, 'files/lhomes.html', {"message":message})
 
-
+@login_required(login_url="loginuser")
 def allposts(request):
     posts=PostModel.objects.all()
     
