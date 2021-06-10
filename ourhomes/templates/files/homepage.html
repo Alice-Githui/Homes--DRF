@@ -3,27 +3,34 @@
 {% load bootstrap3 %}
 
 {% block content %}
+
 <div class="container-fluid" id="homepage">
     <div class="row">
         <div class="col-md-3">
-            <div>
+            <div class="locationlist">
+                <div>
+                    <p>View Houses in the below locations</p>
+                </div>
                 {% for location in locations %}
                 <ul>
                     <li>{{location.name}}</li>
                 </ul>               
                 {% endfor %}
-                <a href="{% url 'newlocation' %}"><p>Add a New Location</p></a>
+                <a href="{% url 'newlocation' %}"><p style="color: white;">ADD A NEW LOCATION</p></a>
                 <br>
-                <small>A new location should be input if it does not currently exist</small>
+                <small style="font-size: 12px; font-style: italic;">(A new location should be input if it does not currently exist)</small>
             </div>
 
         </div>
         <div class="col-md-9">
-            <div class="homepage-images">
+            {% include 'navbar.html' %}
+            <div>
                 {% for home in homes %}
-                
-                <a href="{% url 'onehome' home.pk %}"><h3>{{home.name}}</h3></a>
-                <img src="{{home.images.url}}" alt="{{home.name}} image showing the view of the house">
+                <div class="image-card col-md-6 card">
+                    <a href="{% url 'onehome' home.pk %}"><h3>View House: {{home.name}}</h3></a>
+                    <img src="{{home.images.url}}" alt="{{home.name}} image showing the view of the house">
+                </div>                
+               
                 {% endfor %}
             </div>
 
