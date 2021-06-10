@@ -9,18 +9,12 @@
         <div class="col-md-3">
             <div class="locationlist">
                 <div>
-                    <p>View Houses in the below locations</p>
+                    <p style="font-size: 14px;">We currently have houses in the below locations</p>
                 </div>
-                <!-- {% for location in location %}
-                <a class="nav-item nav-link" routerLink="/repos" routerLinkActive='active' id="repos" href="{% url 'homepage' %}?location={{location.name }}" style="font-weight: bold;">{{location.name}}</a>
-                {% endfor %} -->
                 {% for location in locations %}
-                <a href="{% url 'homepage' %}?location={{location.name}}"><li>{{location.name}}</li></a>
-                <!-- <ul>
-                    <li>{{location.name}}</li>
-                </ul>                -->
+                <a><li>{{location.name}}</li></a>
                 {% endfor %}
-                <a href="{% url 'newlocation' %}"><p style="color: white;">ADD A NEW LOCATION</p></a>
+                <a href="{% url 'newlocation' %}"><p style="color: white; border: none;">ADD A NEW LOCATION</p></a>
                 <br>
                 <small style="font-size: 12px; font-style: italic;">(A new location should be input if it does not currently exist)</small>
             </div>
