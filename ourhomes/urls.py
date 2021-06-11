@@ -30,4 +30,5 @@ urlpatterns=[
     path('allposts', views.allposts, name="allposts"),
     path('search', views.search_home, name="search_results"),
     path('newlocation', views.newlocation, name="newlocation"),
+    path('updatedetails/<str:pk>', views.updateHomeDetails, name="updatehomedetails")
 ]

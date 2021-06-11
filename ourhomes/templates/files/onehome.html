@@ -12,13 +12,14 @@
                 <h2>Name: {{home.name}}</h2>
                 <h2>Location: {{home.location}}</h2>
                 <h2>Capacity: {{home.capacity}} beds</h2>
-                <div class="quantity" style="margin-left:auto;">
+                <a href="{% url 'updatehomedetails' home.id %}"><button class="btn btn-lg">Update Details</button></a>
+                <!-- <div class="quantity" style="margin-left:auto;">
                     <p>Current Capacity:</p>
                     <button class="btn minus-btn" type="button">-</button>
                     <input type="text" id="quantity" value="{{home.capacity}}">
                     <button class="btn plus-btn disabled">+</button>
                     <p>Current Bed Capacity is:<span id="currentcapacity"></span>beds</p>
-                </div>
+                </div> -->
                 <br>
                 <br>
 

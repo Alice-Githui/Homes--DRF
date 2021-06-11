@@ -258,7 +258,7 @@ def logoutUser(request):
 
 @login_required(login_url="loginuser")
 def newHome(request):
-    form=HomeEntryForm
+    form=HomeEntryForm()
     current_user=request.user
     if request.method=="POST":
         form=HomeEntryForm(request.POST, request.FILES)
@@ -271,6 +271,23 @@ def newHome(request):
 
     else:
         form=HomeEntryForm()
+    return render(request, 'files/newhome.html', {"form":form})
+
+@login_required(login_url="loginuser")
+def updateHomeDetails(request, pk):
+    
+    home=Home.objects.get(id=pk)
+    form=HomeEntryForm(instance=home)
+
+    if request.method=="POST":
+        form=HomeEntryForm(request.POST, instance=home)
+        if form.is_valid():
+            home=form.save(commit=False)
+            # home.profile=current_user
+            home.save()
+
+            return redirect('homepage')
+    
     return render(request, 'files/newhome.html', {"form":form})
 
 
